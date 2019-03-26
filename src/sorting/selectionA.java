@@ -26,18 +26,21 @@ public class selectionA {
 			File out = new File("testcases/selectionA-" + archiveId + ".out");
 			PrintWriter pw = new PrintWriter(out);
 			
-			for(int i = 0; i < numbers.length; i++) {
+			for(int i = 0; i < numbers.length-1; i++) {
 				for(int j = 0; j < numbers.length; j++) {
 					pw.print(numbers[j] + " ");
 				}
 				int indMenor = i+1;
-				for(int j = i+1; j < numbers.length; j++) {
+				for(int j = indMenor; j < numbers.length; j++) {
 					if(numbers[indMenor] > numbers[j]) {
 						indMenor = j;
 					}
 				}
-				int menor = numbers[indMenor];
-				
+				if(indMenor != i+1) {
+					int temp = numbers[indMenor];
+					numbers[indMenor] = numbers[i];
+					numbers[i] = temp;
+				}
 				pw.println();
 			}
 			pw.close();
