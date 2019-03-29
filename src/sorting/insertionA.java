@@ -2,18 +2,18 @@ package sorting;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class selectionA {
+public class insertionA {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		File file = new File("testcases/arraystosort.in");
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
+		
 		String line = br.readLine();
 		int archiveId = 1;
 		while(line != null) {
@@ -22,28 +22,25 @@ public class selectionA {
 			for(int i = 0; i < numbers.length; i++) {
 				numbers[i] = Integer.parseInt(sepInput[i]);
 			}
-
-			File out = new File("testcases/selectionA-" + archiveId + ".out");
+			
+			File out = new File("testcases/insertionA-" + archiveId + ".out");
 			PrintWriter pw = new PrintWriter(out);
-
 			for(int i = 0; i < numbers.length; i++) {
 				for(int j = 0; j < numbers.length; j++) {
 					pw.print(numbers[j] + " ");
 				}
-				int indMenor = i;
-				for(int j = i; j < numbers.length; j++) {
-					if(numbers[indMenor] > numbers[j]) {
-						indMenor = j;
+				for(int j = i; j >= 0 && j + 1 < numbers.length; j--) {
+					if(numbers[j+1] < numbers[j]) {
+						int temp = numbers[j+1];
+						numbers[j+1] = numbers[j];
+						numbers[j] = temp;
 					}
 				}
-				int temp = numbers[indMenor];
-				numbers[indMenor] = numbers[i];
-				numbers[i] = temp;
 				pw.println();
 			}
 			pw.close();
-			line = br.readLine();
 			archiveId += 1;
+			line = br.readLine();
 		}
 	}
 }
