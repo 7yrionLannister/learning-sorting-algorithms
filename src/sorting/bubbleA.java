@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class bubbleA {
-
+	//...........................**
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		File file = new File("testcases/arraystosort.in");
